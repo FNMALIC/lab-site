@@ -52,8 +52,8 @@ async function fetchProductDetails(productId) {
         
         const product = await response.json();
         displayProductDetails(product);
-        fetchRelatedProducts(product.category);
-        fetchProductDocumentation(productId);
+        // fetchRelatedProducts(product.category);
+        // fetchProductDocumentation(productId);
     } catch (error) {
         console.error('Error fetching product details:', error);
         showError('Failed to load product details. Please try again later.');
@@ -73,16 +73,18 @@ function displayProductDetails(product) {
     // Update product details
     document.title = `${product.name} - LabCraft`;
     productTitle.textContent = product.name;
-    productPrice.textContent = formatPrice(product.price);
+    productPrice.textContent = formatPrice(product.price_with_tax);
     productDescription.textContent = product.description || 'No description available.';
     
+    const imageUrl = product.image_urls || 'https://via.placeholder.com/300x200?text=No+Image';
+    
     // Set product image
-    if (product.image_urls && product.image_urls.length > 0) {
+    if (imageUrl) {
         productImage.src = product.image_urls;
         productImage.alt = product.name;
         
         // Set thumbnails if multiple images exist
-        setupProductImages(product.image_urls);
+        setupProductImages(imageUrl);
     } else {
         productImage.src = '/api/placeholder/500/500?text=No+Image';
     }
@@ -209,7 +211,7 @@ function setupProductImages(imageUrls) {
     const thumbnails = document.querySelectorAll('.thumbnail img');
     
     // Set main image
-    productImage.src = imageUrls[0];
+    productImage.src = imageUrls;
     
     // Set thumbnail images
     thumbnails.forEach((thumbnail, index) => {
@@ -219,7 +221,7 @@ function setupProductImages(imageUrls) {
             
             // Add click event to switch main image
             thumbnail.addEventListener('click', () => {
-                productImage.src = imageUrls[index];
+                productImage.src = imageUrls;
                 
                 // Update thumbnail borders
                 document.querySelectorAll('.thumbnail').forEach(t => {

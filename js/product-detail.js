@@ -78,7 +78,7 @@ function displayProductDetails(product) {
     
     // Set product image
     if (product.image_urls && product.image_urls.length > 0) {
-        productImage.src = product.image_urls[0];
+        productImage.src = product.image_urls;
         productImage.alt = product.name;
         
         // Set thumbnails if multiple images exist

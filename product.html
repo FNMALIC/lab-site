@@ -22,9 +22,9 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#FFF3E0', // Blue
-                        'primary-light': '#FFB74D',
-                        'primary-dark': '#F57C00',
+                        'primary': '#FF9800', // Orange
+                        'primary-light': '#FFB74D', // Light Orange
+                        'primary-dark': '#F57C00', // Dark Orange
                         'accent': '#10B981', // Green
                         'dark': '#1E293B',
                     }
@@ -34,7 +34,7 @@
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50">
+<body class="bg-orange-50">
 <!-- Header -->
 <header class="bg-white shadow-md">
     <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
@@ -58,8 +58,8 @@
         <!-- Navigation -->
         <nav>
             <ul class="flex space-x-4">
-                <li><a href="index.html" class="text-primary hover:text-primary-dark font-medium">Home</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-primary font-medium">Products</a></li>
+                <li><a href="index.html" class="text-gray-600 hover:text-primary font-medium">Home</a></li>
+                <li><a href="#" class="text-primary hover:text-primary-dark font-medium">Products</a></li>
                 <li><a href="#" class="text-gray-600 hover:text-primary font-medium">Solutions</a></li>
                 <li><a href="#" class="text-gray-600 hover:text-primary font-medium">Contact</a></li>
             </ul>
@@ -72,9 +72,9 @@
     <div class="flex items-center text-sm text-gray-600">
         <a href="index.html" class="hover:text-primary">Home</a>
         <span class="mx-2">/</span>
-        <span id="product-category" class="text-gray-500">Category</span>
+        <span id="product-category" class="text-gray-500">3D printers and accessories</span>
         <span class="mx-2">/</span>
-        <span id="product-name" class="text-primary">Product Name</span>
+        <span id="product-name" class="text-primary">DARK GREEN PLA printing filament</span>
     </div>
 </div>
 
@@ -82,18 +82,19 @@
 <section class="py-8">
     <div class="container mx-auto px-4">
         <div class="bg-white rounded-lg shadow-md p-6">
-            <div id="product-loading" class="py-12 text-center">
+            <!-- Loader Animation -->
+            <div id="product-loading" class="py-12 text-center hidden">
                 <i class="fas fa-spinner fa-spin text-primary text-4xl"></i>
                 <p class="mt-4 text-gray-600">Loading product details...</p>
             </div>
             
-            <div id="product-details" class="hidden grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div id="product-details" class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Product Image -->
                 <div>
-                    <img id="product-image" src="/api/placeholder/500/500" alt="Product" class="w-full h-auto rounded-lg shadow-md">
+                    <img id="product-image" src="https://lqaofeixzvzhqdgdzbwg.supabase.co/storage/v1/object/public/product-images/1742331385470-o78gkeum6k.webp" alt="DARK GREEN PLA printing filament" class="w-full h-auto rounded-lg shadow-md" onerror="this.src='/api/placeholder/500/500'">
                     <div class="grid grid-cols-4 gap-2 mt-4">
-                        <div class="thumbnail cursor-pointer border-2 border-transparent hover:border-primary rounded-md overflow-hidden">
-                            <img id="thumbnail-1" src="/api/placeholder/120/120" alt="Thumbnail 1" class="w-full h-auto">
+                        <div class="thumbnail cursor-pointer border-2 border-primary rounded-md overflow-hidden">
+                            <img id="thumbnail-1" src="https://lqaofeixzvzhqdgdzbwg.supabase.co/storage/v1/object/public/product-images/1742331385470-o78gkeum6k.webp" alt="Thumbnail 1" class="w-full h-auto" onerror="this.src='/api/placeholder/120/120'">
                         </div>
                         <div class="thumbnail cursor-pointer border-2 border-transparent hover:border-primary rounded-md overflow-hidden">
                             <img id="thumbnail-2" src="/api/placeholder/120/120" alt="Thumbnail 2" class="w-full h-auto">
@@ -109,7 +110,7 @@
 
                 <!-- Product Info -->
                 <div>
-                    <h1 id="product-title" class="text-3xl font-bold text-dark mb-4">Product Name</h1>
+                    <h1 id="product-title" class="text-3xl font-bold text-dark mb-4">DARK GREEN PLA printing filament</h1>
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400 flex">
                             <i class="fas fa-star"></i>
@@ -118,27 +119,53 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <span class="text-gray-600 ml-2" id="product-rating">4.5 (24 reviews)</span>
+                        <span class="text-gray-600 ml-2" id="product-rating">0.0 (0 reviews)</span>
                     </div>
 
-                    <p id="product-price" class="text-3xl font-bold text-primary mb-6">$0.00</p>
+                    <div class="flex items-center mb-4">
+                        <p id="product-price" class="text-3xl font-bold text-primary mr-4">$52.25</p>
+                        <p class="text-lg text-gray-500 line-through">$140.00</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-tag mr-2 text-primary"></i>
+                            <span class="font-medium">Product Code:</span>
+                            <span class="ml-2">ID0231</span>
+                        </div>
+                    </div>
 
                     <div class="mb-6">
                         <h2 class="text-lg font-semibold text-dark mb-2">Description</h2>
-                        <p id="product-description" class="text-gray-600">Product description loading...</p>
+                        <p id="product-description" class="text-gray-600">Filament vert pla pour impression 3d</p>
                     </div>
 
                     <div class="mb-6">
                         <h2 class="text-lg font-semibold text-dark mb-2">Specifications</h2>
                         <div id="product-specs" class="grid grid-cols-2 gap-4 text-sm">
-                            <!-- Specifications will be loaded dynamically -->
+                            <div class="flex items-center">
+                                <span class="font-medium">Category:</span>
+                                <span class="ml-2">imprimantes 3D et accessoires</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-medium">Color:</span>
+                                <span class="ml-2">Dark Green</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-medium">Material:</span>
+                                <span class="ml-2">PLA</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-medium">Type:</span>
+                                <span class="ml-2">Printing Filament</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="mb-8">
                         <h2 class="text-lg font-semibold text-dark mb-2">Availability</h2>
                         <p id="product-availability" class="text-green-600">
-                            <i class="fas fa-check-circle mr-2"></i> <span id="availability-text">In Stock</span>
+                            <i class="fas fa-check-circle mr-2"></i> <span id="availability-text">In Stock (2 available)</span>
                         </p>
                     </div>
 
@@ -150,7 +177,7 @@
                                     <button id="decrease-quantity" class="bg-gray-200 text-gray-600 hover:text-gray-700 hover:bg-gray-300 h-full w-20 rounded-l cursor-pointer">
                                         <span class="m-auto text-xl font-thin">−</span>
                                     </button>
-                                    <input type="number" id="quantity" class="focus:outline-none text-center w-full bg-gray-100 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 outline-none" name="quantity" value="1" min="1">
+                                    <input type="number" id="quantity" class="focus:outline-none text-center w-full bg-gray-100 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 outline-none" name="quantity" value="1" min="1" max="2">
                                     <button id="increase-quantity" class="bg-gray-200 text-gray-600 hover:text-gray-700 hover:bg-gray-300 h-full w-20 rounded-r cursor-pointer">
                                         <span class="m-auto text-xl font-thin">+</span>
                                     </button>
@@ -200,25 +227,46 @@
                 <!-- Tab content -->
                 <div class="py-4" id="tab-content">
                     <div id="datasheet-content" class="tab-pane">
-                        <div id="datasheet-loading" class="text-center py-4">
-                            <p>Loading datasheet information...</p>
-                        </div>
+                        <h3 class="text-xl font-semibold mb-4">PLA Filament Specifications</h3>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li><strong>Material:</strong> Polylactic Acid (PLA)</li>
+                            <li><strong>Color:</strong> Dark Green</li>
+                            <li><strong>Diameter:</strong> 1.75mm (standard)</li>
+                            <li><strong>Weight:</strong> 1kg spool</li>
+                            <li><strong>Printing Temperature:</strong> 190°C - 220°C</li>
+                            <li><strong>Bed Temperature:</strong> 20°C - 60°C (heated bed optional)</li>
+                            <li><strong>Density:</strong> 1.24 g/cm³</li>
+                        </ul>
                     </div>
                     <div id="usage-content" class="tab-pane hidden">
-                        <div id="usage-loading" class="text-center py-4">
-                            <p>Loading usage examples...</p>
-                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Usage Examples</h3>
+                        <p class="mb-4">This dark green PLA filament is perfect for:</p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>Botanical models and plant-themed designs</li>
+                            <li>Miniature forests and landscapes</li>
+                            <li>Architectural models requiring foliage</li>
+                            <li>Gaming miniatures and terrain</li>
+                            <li>Artistic sculptures with natural elements</li>
+                            <li>Holiday decorations</li>
+                        </ul>
                     </div>
                     <div id="resources-content" class="tab-pane hidden">
-                        <div id="resources-loading" class="text-center py-4">
-                            <p>Loading additional resources...</p>
-                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Additional Resources</h3>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li><a href="#" class="text-primary hover:text-primary-dark">Download Complete Material Safety Data Sheet (MSDS)</a></li>
+                            <li><a href="#" class="text-primary hover:text-primary-dark">PLA Material Guide</a></li>
+                            <li><a href="#" class="text-primary hover:text-primary-dark">Troubleshooting Common PLA Printing Issues</a></li>
+                            <li><a href="#" class="text-primary hover:text-primary-dark">Optimal Printer Settings for This Filament</a></li>
+                            <li><a href="#" class="text-primary hover:text-primary-dark">Post-Processing Techniques for PLA</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 
 <!-- Related Products -->
 <section class="py-8 bg-gray-100">

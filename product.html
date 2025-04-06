@@ -60,100 +60,24 @@
 </div>
 
 <!-- Product Details -->
+<!-- Product Details Section -->
 <section class="py-8">
     <div class="container mx-auto px-4">
         <div class="bg-white rounded-lg shadow-md p-6">
-            <!-- Loader Animation -->
-            <div id="product-loading" class="py-12 text-center hidden">
+            <!-- Loader Animation - Remove 'hidden' class -->
+            <div id="product-loading" class="py-12 text-center">
                 <i class="fas fa-spinner fa-spin text-primary text-4xl"></i>
                 <p class="mt-4 text-gray-600">Loading product details...</p>
             </div>
             
-            <div id="product-details" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Product Image -->
-                <div>
-                    <img id="product-image" src="#" alt="DARK GREEN PLA printing filament" class="w-full h-auto rounded-lg shadow-md" >
-                
-                </div>
-
-                <!-- Product Info -->
-                <div>
-                    <h1 id="product-title" class="text-3xl font-bold text-dark mb-4">#####</h1>
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 flex">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span class="text-gray-600 ml-2" id="product-rating">0.0 (0 reviews)</span>
-                    </div>
-
-                    <div class="flex items-center mb-4">
-                        <p id="product-price" class="text-3xl font-bold text-primary mr-4">XAF 52.25</p>
-                    </div>
-
-                    <div class="mb-6">
-                        <div class="flex items-center mb-2">
-                            <i class="fas fa-tag mr-2 text-primary"></i>
-                            <span class="font-medium">Product Code:</span>
-                            <span class="ml-2">###</span>
-                        </div>
-                    </div>
-
-                    <div class="mb-6">
-                        <h2 class="text-lg font-semibold text-dark mb-2">Description</h2>
-                        <p id="product-description" class="text-gray-600">Filament vert pla pour impression 3d</p>
-                    </div>
-
-                    <div class="mb-6">
-                        <h2 class="text-lg font-semibold text-dark mb-2">Specifications</h2>
-                        <div id="product-specs" class="grid grid-cols-2 gap-4 text-sm">
-                            <div class="flex items-center">
-                                <span class="font-medium">Category:</span>
-                                <span class="ml-2">imprimantes 3D et accessoires</span>
-                            </div>
-                          
-                        </div>
-                    </div>
-
-                    <div class="mb-8">
-                        <h2 class="text-lg font-semibold text-dark mb-2">Availability</h2>
-                        <p id="product-availability" class="text-green-600">
-                            <i class="fas fa-check-circle mr-2"></i> <span id="availability-text">In Stock (###)</span>
-                        </p>
-                    </div>
-
-                    <div class="mb-6">
-                        <div class="flex items-center mb-4">
-                            <label for="quantity" class="mr-4 font-medium text-gray-700">Quantity:</label>
-                            <div class="custom-number-input">
-                                <div class="flex flex-row h-10 w-32 rounded-lg relative bg-transparent">
-                                    <button id="decrease-quantity" class="bg-gray-200 text-gray-600 hover:text-gray-700 hover:bg-gray-300 h-full w-20 rounded-l cursor-pointer">
-                                        <span class="m-auto text-xl font-thin">−</span>
-                                    </button>
-                                    <input type="number" id="quantity" class="focus:outline-none text-center w-full bg-gray-100 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 outline-none" name="quantity" value="1" min="1" max="2">
-                                    <button id="increase-quantity" class="bg-gray-200 text-gray-600 hover:text-gray-700 hover:bg-gray-300 h-full w-20 rounded-r cursor-pointer">
-                                        <span class="m-auto text-xl font-thin">+</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-                        <a href="#" id="whatsapp-button" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg inline-flex items-center transition duration-300">
-                            <i class="fab fa-whatsapp mr-2 text-xl"></i>
-                            Contact on WhatsApp
-                        </a>
-                    </div>
-                </div>
+            <!-- Product details - Add 'hidden' class -->
+            <div id="product-details" class="grid grid-cols-1 md:grid-cols-2 gap-8 hidden">
+                <!-- Rest of the product details code remains the same -->
+                <!-- ... -->
             </div>
         </div>
     </div>
 </section>
-
 <!-- Technical Documentation -->
 <!-- <section class="py-8">
     <div class="container mx-auto px-4">

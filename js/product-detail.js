@@ -60,7 +60,6 @@ async function fetchProductDetails(productId) {
     }
 }
 
-// Display product details on the page
 function displayProductDetails(product) {
     // Hide loading indicator and show details
     productLoading.classList.add('hidden');
@@ -76,17 +75,24 @@ function displayProductDetails(product) {
     productPrice.textContent = formatPrice(product.price_with_tax);
     productDescription.textContent = product.description || 'No description available.';
     
-    const imageUrl = product.image_urls || 'https://via.placeholder.com/300x200?text=No+Image';
-    
-    // Set product image
-    if (imageUrl) {
-        productImage.src = product.image_urls;
-        productImage.alt = product.name;
-        
-        // Set thumbnails if multiple images exist
-        setupProductImages(imageUrl);
+    // Handle product images
+    if (product.image_urls) {
+        // Check if image_urls is an array or single string
+        if (Array.isArray(product.image_urls)) {
+            productImage.src = product.image_urls; // Use the first image as main
+            productImage.alt = product.name;
+            setupProductImages(product.image_urls);
+        } else {
+            // If it's a single string
+            productImage.src = product.image_urls;
+            productImage.alt = product.name;
+            // Create an array with the single URL for thumbnails
+            setupProductImages([product.image_urls]);
+        }
     } else {
-        productImage.src = '#'
+        productImage.src = 'https://via.placeholder.com/300x200?text=No+Image';
+        productImage.alt = "No image available";
+    }
     
     // Update availability status
     const isAvailable = product.available !== false && (product.quantity > 0);

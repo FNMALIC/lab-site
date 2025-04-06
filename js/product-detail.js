@@ -86,8 +86,7 @@ function displayProductDetails(product) {
         // Set thumbnails if multiple images exist
         setupProductImages(imageUrl);
     } else {
-        productImage.src = '/api/placeholder/500/500?text=No+Image';
-    }
+        productImage.src = '#'
     
     // Update availability status
     const isAvailable = product.available !== false && (product.quantity > 0);

@@ -191,7 +191,7 @@ function createProductCard(product) {
     productElement.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 flex flex-col';
 
     // Handle missing image
-    const imageUrl = product.image_urls?.[0] || '/api/placeholder/300/200?text=No+Image';
+    const imageUrl = product.image_urls || 'https://via.placeholder.com/300x200?text=No+Image';
 
     // Format availability status
     const isAvailable = product.available !== false && product.quantity > 0;
@@ -202,7 +202,7 @@ function createProductCard(product) {
         'Out of Stock';
     
     // Format price
-    const price = product.price ? `$${parseFloat(product.price).toFixed(2)}` : 'Price unavailable';
+    const price = product.price ? `XAF ${parseFloat(product.price_with_tax)}` : 'Price unavailable';
 
     productElement.innerHTML = `
         <div class="relative">

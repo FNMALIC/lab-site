@@ -141,7 +141,7 @@ function formatPrice(price) {
     if (isNaN(numPrice)) return 'Price unavailable';
 
     // Format with 2 decimal places
-    return `$${numPrice.toFixed(2)}`;
+    return `XAF ${numPrice}`;
 }
 
 // Set up category filter buttons

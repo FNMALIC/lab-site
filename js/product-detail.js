@@ -108,7 +108,7 @@ function displayProductDetails(product) {
 function formatPrice(price) {
     if (price === undefined || price === null) return '$0.00';
     
-    return `$${parseFloat(price).toFixed(2)}`;
+    return `XAF ${parseFloat(price).toFixed(2)}`;
 }
 
 // Display product specifications
@@ -201,7 +201,7 @@ function setupQuantityControls() {
 
 // Setup WhatsApp contact button
 function setupWhatsAppButton(product) {
-    const phoneNumber = '+1234567890'; // Replace with actual WhatsApp number
+    const phoneNumber = '+237696787112'; // Replace with actual WhatsApp number
     const message = encodeURIComponent(`Hi, I'm interested in the ${product.name} (Item #${product.id}). Is it available?`);
     whatsappButton.href = `https://wa.me/${phoneNumber}?text=${message}`;
 }

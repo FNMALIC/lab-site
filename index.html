@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OrangeCart - Shop with us</title>
+    <title>LabCraft - Premium Electronic Components</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="LabCraft offers premium electronic components and tools for hobbyists, engineers, and researchers at competitive prices.">
+    <meta name="keywords" content="electronic components, lab equipment, Arduino, Raspberry Pi, sensors, microcontrollers, circuit boards">
+    <meta name="robots" content="index, follow">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="LabCraft - Premium Electronic Components">
+    <meta property="og:description" content="Quality electronic components for your projects and research.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://labcraft.com">
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,9 +22,12 @@
             theme: {
                 extend: {
                     colors: {
-                        'orange-light': '#FFF3E0',
-                        'orange-medium': '#FFB74D',
-                        'orange-dark': '#F57C00',
+                        'primary': '#FFF3E0', // Blue
+                        'primary-light': '#F57C00',
+                        // 'primary-light': '#FFB74D',
+                        'primary-dark': '#FFB74D',
+                        'accent': '#10B981', // Green
+                        'dark': '#1E293B',
                     }
                 }
             }
@@ -21,20 +35,22 @@
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-orange-50">
+<body class="bg-gray-50">
 <!-- Header -->
 <header class="bg-white shadow-md">
     <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
         <div class="flex items-center mb-4 md:mb-0">
-            <h1 class="text-2xl font-bold text-orange-500">OrangeCart</h1>
+            <h1 class="text-2xl font-bold text-primary">
+                <i class="fas fa-microchip mr-2"></i>LabCraft
+            </h1>
         </div>
 
         <!-- Search Bar -->
         <div class="w-full md:w-1/3 mb-4 md:mb-0">
             <div class="relative">
-                <input id="search-input" type="text" placeholder="Search products..."
-                       class="w-full p-2 rounded-lg border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-300">
-                <button class="absolute right-2 top-2 text-orange-400">
+                <input id="search-input" type="text" placeholder="Search components..."
+                       class="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <button class="absolute right-2 top-2 text-primary">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
@@ -43,100 +59,113 @@
         <!-- Navigation -->
         <nav>
             <ul class="flex space-x-4">
-                <li><a href="#" class="text-orange-500 hover:text-orange-600">Home</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-orange-500">Categories</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-orange-500">About</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-orange-500">Contact</a></li>
+                <li><a href="#" class="text-primary hover:text-primary-dark font-medium">Home</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-primary font-medium">Products</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-primary font-medium">Solutions</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-primary font-medium">Contact</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
 <!-- Hero Section -->
-<section class="bg-orange-100 py-16">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold text-orange-700 mb-4">Welcome to OrangeCart</h2>
-        <p class="text-xl text-orange-600 mb-8">Discover our amazing products at great prices</p>
-        <button class="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition duration-300">
-            Shop Now
-        </button>
-    </div>
-</section>
-
-<!-- Product Categories -->
-<section class="py-12">
-    <div class="container mx-auto px-4">
-        <h2 class="text-2xl font-bold text-orange-700 mb-8 text-center">Categories</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="category bg-white p-4 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg transition duration-300" data-category="all">
-                <div class="bg-orange-100 inline-block p-4 rounded-full mb-3">
-                    <i class="fas fa-border-all text-orange-500 text-2xl"></i>
-                </div>
-                <h3 class="font-semibold text-gray-800">All Products</h3>
+<section class="bg-gradient-to-r from-primary-light to-blue-50 py-16">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+            <h2 class="text-4xl font-bold text-dark mb-4">Electronic Components for Innovation</h2>
+            <p class="text-xl text-gray-700 mb-8">Premium quality components and tools for your electronics projects and research</p>
+            <div class="flex space-x-4">
+                <button class="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300">
+                    Shop Now
+                </button>
+                <button class="bg-white text-primary border border-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-light transition duration-300">
+                    View Catalog
+                </button>
             </div>
-            <div class="category bg-white p-4 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg transition duration-300" data-category="electronics">
-                <div class="bg-orange-100 inline-block p-4 rounded-full mb-3">
-                    <i class="fas fa-laptop text-orange-500 text-2xl"></i>
-                </div>
-                <h3 class="font-semibold text-gray-800">Electronics</h3>
-            </div>
-            <div class="category bg-white p-4 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg transition duration-300" data-category="clothing">
-                <div class="bg-orange-100 inline-block p-4 rounded-full mb-3">
-                    <i class="fas fa-tshirt text-orange-500 text-2xl"></i>
-                </div>
-                <h3 class="font-semibold text-gray-800">Clothing</h3>
-            </div>
-            <div class="category bg-white p-4 rounded-lg shadow-md text-center cursor-pointer hover:shadow-lg transition duration-300" data-category="home">
-                <div class="bg-orange-100 inline-block p-4 rounded-full mb-3">
-                    <i class="fas fa-home text-orange-500 text-2xl"></i>
-                </div>
-                <h3 class="font-semibold text-gray-800">Home & Living</h3>
-            </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+            <img src="/api/placeholder/600/400" alt="Electronic Components" class="rounded-lg shadow-lg">
         </div>
     </div>
 </section>
 
-<!-- Products Grid -->
-<section class="py-12 bg-gray-50">
+<!-- Featured Products -->
+<section class="py-12">
     <div class="container mx-auto px-4">
-        <h2 class="text-2xl font-bold text-orange-700 mb-8 text-center">Featured Products</h2>
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold text-dark">Featured Products</h2>
+            <a href="#" class="text-primary hover:text-primary-dark font-medium">View All <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
         <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <!-- Products will be added here dynamically with JavaScript -->
         </div>
     </div>
 </section>
 
+<!-- Features Section -->
+<section class="py-12 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold text-dark mb-8 text-center">Why Choose LabCraft</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <div class="bg-primary-light inline-block p-4 rounded-full mb-4">
+                    <i class="fas fa-check-circle text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-dark mb-2">Quality Assured</h3>
+                <p class="text-gray-600">All our components undergo rigorous testing to ensure reliability and performance.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <div class="bg-primary-light inline-block p-4 rounded-full mb-4">
+                    <i class="fas fa-shipping-fast text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-dark mb-2">Fast Shipping</h3>
+                <p class="text-gray-600">Quick delivery with careful packaging to ensure your components arrive safely.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <div class="bg-primary-light inline-block p-4 rounded-full mb-4">
+                    <i class="fas fa-headset text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-dark mb-2">Technical Support</h3>
+                <p class="text-gray-600">Our team of experts is available to help with component selection and technical questions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Footer -->
-<footer class="bg-orange-600 text-white py-10">
+<footer class="bg-dark text-white py-10">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-                <h3 class="text-xl font-semibold mb-4">OrangeCart</h3>
-                <p class="mb-4">Your one-stop shop for quality products at affordable prices.</p>
+                <h3 class="text-xl font-semibold mb-4">
+                    <i class="fas fa-microchip mr-2"></i>LabCraft
+                </h3>
+                <p class="mb-4">Your trusted source for quality electronic components and tools.</p>
                 <div class="flex space-x-4">
-                    <a href="#" class="hover:text-orange-200"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="hover:text-orange-200"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="hover:text-orange-200"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-primary-light transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-primary-light transition duration-300"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-primary-light transition duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-primary-light transition duration-300"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
             <div>
                 <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-orange-200">Home</a></li>
-                    <li><a href="#" class="hover:text-orange-200">Products</a></li>
-                    <li><a href="#" class="hover:text-orange-200">About Us</a></li>
-                    <li><a href="#" class="hover:text-orange-200">Contact</a></li>
+                    <li><a href="#" class="hover:text-primary-light transition duration-300">Home</a></li>
+                    <li><a href="#" class="hover:text-primary-light transition duration-300">Products</a></li>
+                    <li><a href="#" class="hover:text-primary-light transition duration-300">About Us</a></li>
+                    <li><a href="#" class="hover:text-primary-light transition duration-300">Contact</a></li>
                 </ul>
             </div>
             <div>
                 <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
-                <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> 123 Street, City, Country</p>
+                <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> 123 Tech Street, Innovation City</p>
                 <p class="mb-2"><i class="fas fa-phone-alt mr-2"></i> +123 456 7890</p>
-                <p><i class="fas fa-envelope mr-2"></i> info@orangecart.com</p>
+                <p><i class="fas fa-envelope mr-2"></i> info@labcraft.com</p>
             </div>
         </div>
-        <div class="border-t border-orange-500 mt-8 pt-6 text-center">
-            <p>&copy; 2025 OrangeCart. All rights reserved.</p>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+            <p>&copy; 2025 LabCraft. All rights reserved.</p>
         </div>
     </div>
 </footer>

@@ -1,7 +1,8 @@
 // DOM Elements
 const productDetailsContainer = document.getElementById('product-details');
 const productLoading = document.getElementById('product-loading');
-const productImage = document.getElementById('product-image');
+const productImage = document.getElementById('product-image');	
+const productCode = document.getElementById('product_code');	
 const productTitle = document.getElementById('product-title');
 const productPrice = document.getElementById('product-price');
 const productDescription = document.getElementById('product-description');
@@ -72,6 +73,7 @@ function displayProductDetails(product) {
     // Update product details
     document.title = `${product.name} - LabCraft`;
     productTitle.textContent = product.name;
+    productCode.textContent = product.product_code;
     productPrice.textContent = formatPrice(product.price_with_tax);
     productDescription.textContent = product.description || 'No description available.';
     

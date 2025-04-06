@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Fetch product details from API
 async function fetchProductDetails(productId) {
     try {
-        const response = await fetch(`${apiBaseUrl}${productId}/`);
+        const response = await fetch(`${apiBaseUrl}/${productId}/`);
         
         if (!response.ok) {
             throw new Error(`API responded with status: ${response.status}`);

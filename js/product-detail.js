@@ -53,7 +53,7 @@ async function fetchProductDetails(productId) {
         const product = await response.json();
         displayProductDetails(product);
         // fetchRelatedProducts(product.category);
-        // fetchProductDocumentation(productId);
+     
     } catch (error) {
         console.error('Error fetching product details:', error);
         showError('Failed to load product details. Please try again later.');
@@ -348,44 +348,6 @@ function displayRelatedProducts(products) {
         relatedProducts.appendChild(productCard);
     });
 }
-
-// Fetch product documentation
-async function fetchProductDocumentation(productId) {
-    try {
-        const response = await fetch(`${apiBaseUrl}${productId}/documentation/`);
-        
-        if (!response.ok) {
-            throw new Error(`API responded with status: ${response.status}`);
-        }
-        
-        const documentation = await response.json();
-        
-        // Populate documentation tabs
-        if (documentation.datasheet) {
-            document.getElementById('datasheet-content').innerHTML = documentation.datasheet;
-        } else {
-            document.getElementById('datasheet-content').innerHTML = '<p class="text-gray-500">No datasheet information available for this product.</p>';
-        }
-        
-        if (documentation.usage_examples) {
-            document.getElementById('usage-content').innerHTML = documentation.usage_examples;
-        } else {
-            document.getElementById('usage-content').innerHTML = '<p class="text-gray-500">No usage examples available for this product.</p>';
-        }
-        
-        if (documentation.resources) {
-            document.getElementById('resources-content').innerHTML = documentation.resources;
-        } else {
-            document.getElementById('resources-content').innerHTML = '<p class="text-gray-500">No additional resources available for this product.</p>';
-        }
-    } catch (error) {
-        console.error('Error fetching product documentation:', error);
-        document.getElementById('datasheet-content').innerHTML = '<p class="text-gray-500">Failed to load documentation. Please try again later.</p>';
-        document.getElementById('usage-content').innerHTML = '<p class="text-gray-500">Failed to load usage examples. Please try again later.</p>';
-        document.getElementById('resources-content').innerHTML = '<p class="text-gray-500">Failed to load resources. Please try again later.</p>';
-    }
-}
-
 // Display error message
 function showError(message) {
     productLoading.innerHTML = `

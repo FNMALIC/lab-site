@@ -22,10 +22,9 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#FFF3E0', // Blue
-                        'primary-light': '#F57C00',
-                        // 'primary-light': '#FFB74D',
-                        'primary-dark': '#FFB74D',
+                        'primary': '#FF9800', // Orange
+                        'primary-light': '#FFB74D', // Light Orange
+                        'primary-dark': '#F57C00', // Dark Orange
                         'accent': '#10B981', // Green
                         'dark': '#1E293B',
                     }
@@ -35,13 +34,13 @@
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50">
+<body class="bg-orange-50">
 <!-- Header -->
 <header class="bg-white shadow-md">
     <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
         <div class="flex items-center mb-4 md:mb-0">
             <h1 class="text-2xl font-bold text-primary">
-                <i class="fas fa-microchip mr-2"></i>LabCraft
+                LabCraft
             </h1>
         </div>
 
@@ -57,19 +56,12 @@
         </div>
 
         <!-- Navigation -->
-        <nav>
-            <ul class="flex space-x-4">
-                <li><a href="#" class="text-primary hover:text-primary-dark font-medium">Home</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-primary font-medium">Products</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-primary font-medium">Solutions</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-primary font-medium">Contact</a></li>
-            </ul>
-        </nav>
+     
     </div>
 </header>
 
 <!-- Hero Section -->
-<section class="bg-gradient-to-r from-primary-light to-blue-50 py-16">
+<section class="bg-gradient-to-r from-primary-light to-orange-50 py-16">
     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-8 md:mb-0">
             <h2 class="text-4xl font-bold text-dark mb-4">Electronic Components for Innovation</h2>
@@ -78,14 +70,10 @@
                 <button class="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300">
                     Shop Now
                 </button>
-                <button class="bg-white text-primary border border-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-light transition duration-300">
-                    View Catalog
-                </button>
+              
             </div>
         </div>
-        <div class="md:w-1/2 flex justify-center">
-            <img src="/api/placeholder/600/400" alt="Electronic Components" class="rounded-lg shadow-lg">
-        </div>
+      
     </div>
 </section>
 
@@ -97,33 +85,83 @@
             <a href="#" class="text-primary hover:text-primary-dark font-medium">View All <i class="fas fa-arrow-right ml-1"></i></a>
         </div>
         <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Products will be added here dynamically with JavaScript -->
+            <!-- Featured Product 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <a href="product.html">
+                    <img src="/api/placeholder/300/200" alt="Product" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-dark mb-2">DARK GREEN PLA printing filament</h3>
+                        <p class="text-gray-600 text-sm mb-2">ID0231</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-bold">$52.25</span>
+                            <span class="text-green-600 text-sm">In Stock</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- More Featured Products -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="/api/placeholder/300/200" alt="Product" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-dark mb-2">Arduino Nano</h3>
+                    <p class="text-gray-600 text-sm mb-2">ID1234</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-primary font-bold">$12.99</span>
+                        <span class="text-green-600 text-sm">In Stock</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="/api/placeholder/300/200" alt="Product" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-dark mb-2">Raspberry Pi 4 Model B</h3>
+                    <p class="text-gray-600 text-sm mb-2">ID2345</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-primary font-bold">$45.99</span>
+                        <span class="text-green-600 text-sm">In Stock</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="/api/placeholder/300/200" alt="Product" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-dark mb-2">Ultrasonic Distance Sensor</h3>
+                    <p class="text-gray-600 text-sm mb-2">ID3456</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-primary font-bold">$3.99</span>
+                        <span class="text-green-600 text-sm">In Stock</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Features Section -->
-<section class="py-12 bg-gray-100">
+<section class="py-12 bg-orange-100">
     <div class="container mx-auto px-4">
         <h2 class="text-2xl font-bold text-dark mb-8 text-center">Why Choose LabCraft</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="bg-white p-6 rounded-lg shadow-md text-center">
                 <div class="bg-primary-light inline-block p-4 rounded-full mb-4">
-                    <i class="fas fa-check-circle text-primary text-2xl"></i>
+                    <i class="fas fa-check-circle text-white text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-semibold text-dark mb-2">Quality Assured</h3>
                 <p class="text-gray-600">All our components undergo rigorous testing to ensure reliability and performance.</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md text-center">
                 <div class="bg-primary-light inline-block p-4 rounded-full mb-4">
-                    <i class="fas fa-shipping-fast text-primary text-2xl"></i>
+                    <i class="fas fa-shipping-fast text-white text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-semibold text-dark mb-2">Fast Shipping</h3>
                 <p class="text-gray-600">Quick delivery with careful packaging to ensure your components arrive safely.</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md text-center">
                 <div class="bg-primary-light inline-block p-4 rounded-full mb-4">
-                    <i class="fas fa-headset text-primary text-2xl"></i>
+                    <i class="fas fa-headset text-white text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-semibold text-dark mb-2">Technical Support</h3>
                 <p class="text-gray-600">Our team of experts is available to help with component selection and technical questions.</p>
@@ -152,7 +190,7 @@
                 <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
                 <ul class="space-y-2">
                     <li><a href="#" class="hover:text-primary-light transition duration-300">Home</a></li>
-                    <li><a href="#" class="hover:text-primary-light transition duration-300">Products</a></li>
+                    <li><a href="product.html" class="hover:text-primary-light transition duration-300">Products</a></li>
                     <li><a href="#" class="hover:text-primary-light transition duration-300">About Us</a></li>
                     <li><a href="#" class="hover:text-primary-light transition duration-300">Contact</a></li>
                 </ul>

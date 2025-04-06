@@ -289,7 +289,7 @@ async function fetchRelatedProducts(category) {
     if (!category) return;
     
     try {
-        const response = await fetch(`${apiBaseUrl}?category=${category}&limit=4`);
+        const response = await fetch(`${apiBaseUrl}/recommendations/`);
         
         if (!response.ok) {
             throw new Error(`API responded with status: ${response.status}`);

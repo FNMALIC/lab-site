@@ -1,3 +1,29 @@
+const CACHE_DURATION_MINUTES = 5; // How long to keep products in cache
+const productCache = {
+  data: {},
+  timestamp: {},
+  isCacheValid: function(key) {
+    if (!this.timestamp[key]) return false;
+    
+    const now = new Date().getTime();
+    const cacheTime = this.timestamp[key];
+    const diffMinutes = (now - cacheTime) / (1000 * 60);
+    
+    return diffMinutes < CACHE_DURATION_MINUTES;
+  },
+  set: function(key, data) {
+    this.data[key] = data;
+    this.timestamp[key] = new Date().getTime();
+  },
+  get: function(key) {
+    return this.data[key];
+  },
+  clear: function() {
+    this.data = {};
+    this.timestamp = {};
+  }
+};
+
 // DOM Elements
 const productsGrid = document.getElementById('products-grid');
 const categoryButtons = document.querySelectorAll('.category');
@@ -15,10 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
 // Fetch products from API
 async function fetchProducts(page = 1, category = 'all') {
     try {
+        const cacheKey = `products_page${page}`;
+        
+        // Check if we have valid cached data
+        if (productCache.isCacheValid(cacheKey)) {
+            console.log('Using cached products data');
+            const products = productCache.get(cacheKey);
+            displayProducts(products, category);
+            return products;
+        }
+        
+        // If no cache or expired, fetch from API
+        console.log('Fetching fresh products data from API');
         const url = `${apiBaseUrl}?page=${page}`;
         const response = await fetch(url);
         const products = await response.json();
 
+        // Store in cache
+        productCache.set(cacheKey, products);
+        
         displayProducts(products, category);
         return products;
     } catch (error) {
@@ -31,6 +72,7 @@ async function fetchProducts(page = 1, category = 'all') {
         return [];
     }
 }
+
 
 // Display products based on current category
 function displayProducts(products, category = 'all') {
@@ -216,11 +258,28 @@ async function searchProducts(searchTerm) {
         currentPage = 1;
         currentCategory = 'all';
         fetchProducts(currentPage);
+        
+        // Show pagination again
+        const paginationContainer = document.getElementById('pagination-container');
+        if (paginationContainer) {
+            paginationContainer.style.display = 'flex';
+        }
         return;
     }
 
     try {
-        const products = await fetchProducts(1); // Fetch page 1
+        const cacheKey = 'products_page1';
+        let products;
+        
+        // Check if we have valid cached data for page 1
+        if (productCache.isCacheValid(cacheKey)) {
+            console.log('Using cached products data for search');
+            products = productCache.get(cacheKey);
+        } else {
+            // If no cache or expired, fetch from API
+            console.log('Fetching fresh products data for search');
+            products = await fetchProducts(1); // Fetch page 1
+        }
 
         // Filter products by search term
         const filteredProducts = products.filter(product =>
@@ -245,6 +304,12 @@ async function searchProducts(searchTerm) {
     } catch (error) {
         console.error('Error searching products:', error);
     }
+}
+
+// Function to force refresh cache
+function refreshProductCache() {
+    productCache.clear();
+    fetchProducts(currentPage, currentCategory);
 }
 
 // Function to get URL parameters (for product detail page)

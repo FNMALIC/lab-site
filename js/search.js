@@ -53,7 +53,7 @@ function setupSearch() {
 // Search products based on query
 async function searchProducts(query) {
     try {
-        const response = await fetch(`${apiBaseUrl}?search=${encodeURIComponent(query)}&limit=5`);
+        const response = await fetch(`${apiBaseUrl}?search=${encodeURIComponent(query)}`);
         
         if (!response.ok) {
             throw new Error(`API responded with status: ${response.status}`);

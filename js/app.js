@@ -250,7 +250,6 @@ function setupSearch() {
         }
     }
 }
-
 // Search products
 async function searchProducts(searchTerm) {
     if (!searchTerm) {
@@ -268,44 +267,34 @@ async function searchProducts(searchTerm) {
     }
 
     try {
-        const cacheKey = 'products_page1';
-        let products;
-        
-        // Check if we have valid cached data for page 1
-        if (productCache.isCacheValid(cacheKey)) {
-            console.log('Using cached products data for search');
-            products = productCache.get(cacheKey);
-        } else {
-            // If no cache or expired, fetch from API
-            console.log('Fetching fresh products data for search');
-            products = await fetchProducts(1); // Fetch page 1
-        }
-
-        // Filter products by search term
-        const filteredProducts = products.filter(product =>
-            product.name.toLowerCase().includes(searchTerm) ||
-            (product.description && product.description.toLowerCase().includes(searchTerm))
-        );
-
-        // Display filtered products
-        displayProducts(filteredProducts, 'all');
-
-        // Update UI to show we're in search mode
-        document.querySelectorAll('.category').forEach(btn => {
-            btn.classList.remove('ring-2', 'ring-orange-500');
-        });
-
         // Hide pagination during search
         const paginationContainer = document.getElementById('pagination-container');
         if (paginationContainer) {
             paginationContainer.style.display = 'none';
         }
 
+        // Use the proper search API endpoint
+        const url = `${apiBaseUrl}search/?q=${encodeURIComponent(searchTerm)}`;
+        const response = await fetch(url);
+        const searchResults = await response.json();
+
+        // Display search results
+        displayProducts(searchResults, 'all');
+
+        // Update UI to show we're in search mode
+        document.querySelectorAll('.category').forEach(btn => {
+            btn.classList.remove('ring-2', 'ring-orange-500');
+        });
+
     } catch (error) {
         console.error('Error searching products:', error);
+        productsGrid.innerHTML = `
+            <div class="col-span-full text-center py-8">
+                <p class="text-red-500">Failed to search products. Please try again later.</p>
+            </div>
+        `;
     }
 }
-
 // Function to force refresh cache
 function refreshProductCache() {
     productCache.clear();

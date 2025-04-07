@@ -165,9 +165,9 @@ function createProductCard(product) {
                 </a>
             </div>
             <div class="text-sm text-gray-500 mt-2">
-                ${product.available ?
-        `<span class="text-green-500">In Stock (${product.quantity})</span>` :
-        '<span class="text-red-500">Out of Stock</span>'}
+                ${product.qunatity > 3 ?
+        `<span class="text-green-500">In Stock</span>` :
+        '<span class="text-red-500">Almost out of Stock</span>'}
             </div>
         </div>
     `;

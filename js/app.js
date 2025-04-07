@@ -24,6 +24,46 @@ const productCache = {
   }
 };
 
+function setupBackToTopButton() {
+    // Create the button
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.id = 'back-to-top';
+    backToTopBtn.className = 'fixed bottom-6 right-6 bg-primary hover:bg-primary-dark text-white rounded-full p-3 shadow-md transition duration-300 opacity-0 invisible';
+    backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(backToTopBtn);
+    
+    // Add styles for the button
+    const style = document.createElement('style');
+    style.textContent = `
+        #back-to-top {
+            z-index: 1000;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) { // Show after scrolling down 300px
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to top when clicked
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Smooth scrolling
+        });
+    });
+}
+
 // DOM Elements
 const productsGrid = document.getElementById('products-grid');
 const categoryButtons = document.querySelectorAll('.category');
@@ -33,9 +73,10 @@ const apiBaseUrl = 'https://fnmalic.pythonanywhere.com/api/client/products/';
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
+    setupBackToTopButton();
     fetchProducts(currentPage);
-    setupCategoryFilters();
     setupPagination();
+    setupSearch();
 });
 
 // Fetch products from API
@@ -144,31 +185,6 @@ function formatPrice(price) {
     return `XAF ${numPrice}`;
 }
 
-// Set up category filter buttons
-function setupCategoryFilters() {
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Get the category from the data attribute
-            const category = button.dataset.category;
-            currentCategory = category;
-            currentPage = 1; // Reset to first page when changing categories
-
-            // Update active state
-            categoryButtons.forEach(btn => {
-                btn.classList.remove('ring-2', 'ring-orange-500');
-            });
-            button.classList.add('ring-2', 'ring-orange-500');
-
-            // Fetch products with the selected category
-            fetchProducts(currentPage, category);
-            updatePaginationUI(currentPage);
-        });
-    });
-
-    // Set "All Products" as active by default
-    document.querySelector('[data-category="all"]').classList.add('ring-2', 'ring-orange-500');
-}
-
 // Set up pagination
 function setupPagination() {
     // Create pagination container if it doesn't exist
@@ -251,18 +267,56 @@ function setupSearch() {
     }
 }
 // Search products
+// async function searchProducts(searchTerm) {
+//     if (!searchTerm) {
+//         // If search is empty, reset to first page with all products
+//         currentPage = 1;
+//         currentCategory = 'all';
+//         fetchProducts(currentPage);
+        
+//         // Show pagination again
+//         const paginationContainer = document.getElementById('pagination-container');
+//         if (paginationContainer) {
+//             paginationContainer.style.display = 'flex';
+//         }
+//         return;
+//     }
+
+//     try {
+//         // Hide pagination during search
+//         const paginationContainer = document.getElementById('pagination-container');
+//         if (paginationContainer) {
+//             paginationContainer.style.display = 'none';
+//         }
+
+//         // Use the proper search API endpoint
+//         const url = `${apiBaseUrl}search/?q=${encodeURIComponent(searchTerm)}`;
+//         const response = await fetch(url);
+//         const searchResults = await response.json();
+
+//         // Display search results
+//         displayProducts(searchResults, 'all');
+
+//         // Update UI to show we're in search mode
+//         document.querySelectorAll('.category').forEach(btn => {
+//             btn.classList.remove('ring-2', 'ring-orange-500');
+//         });
+
+//     } catch (error) {
+//         console.error('Error searching products:', error);
+//         productsGrid.innerHTML = `
+//             <div class="col-span-full text-center py-8">
+//                 <p class="text-red-500">Failed to search products. Please try again later.</p>
+//             </div>
+//         `;
+//     }
+// }
+
+// Search products
 async function searchProducts(searchTerm) {
     if (!searchTerm) {
-        // If search is empty, reset to first page with all products
-        currentPage = 1;
-        currentCategory = 'all';
-        fetchProducts(currentPage);
-        
-        // Show pagination again
-        const paginationContainer = document.getElementById('pagination-container');
-        if (paginationContainer) {
-            paginationContainer.style.display = 'flex';
-        }
+        // Reset search (already in your code)
+        clearSearch();
         return;
     }
 
@@ -285,6 +339,9 @@ async function searchProducts(searchTerm) {
         document.querySelectorAll('.category').forEach(btn => {
             btn.classList.remove('ring-2', 'ring-orange-500');
         });
+        
+        // Show the clear search button
+        showClearSearchButton(searchTerm);
 
     } catch (error) {
         console.error('Error searching products:', error);
@@ -295,6 +352,63 @@ async function searchProducts(searchTerm) {
         `;
     }
 }
+
+// Function to clear search and return to normal display
+function clearSearch() {
+    // Reset search input
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+    
+    // Reset to first page with all products
+    currentPage = 1;
+    currentCategory = 'all';
+    fetchProducts(currentPage);
+    
+    // Show pagination again
+    const paginationContainer = document.getElementById('pagination-container');
+    if (paginationContainer) {
+        paginationContainer.style.display = 'flex';
+    }
+    
+    // Hide the clear search button
+    hideClearSearchButton();
+}
+
+// Show clear search button with search term
+function showClearSearchButton(searchTerm) {
+    // Try to find existing button first
+    let clearButton = document.getElementById('clear-search-button');
+    
+    if (!clearButton) {
+        // Create the button if it doesn't exist
+        clearButton = document.createElement('button');
+        clearButton.id = 'clear-search-button';
+        clearButton.className = 'ml-2 py-2 px-3 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg flex items-center transition duration-300';
+        
+        // Insert it after the search box
+        const searchContainer = document.getElementById('search-input').parentElement;
+        searchContainer.parentNode.insertBefore(clearButton, searchContainer.nextSibling);
+    }
+    
+    clearButton.innerHTML = `
+        <span class="mr-1">Results for "${searchTerm}"</span>
+        <i class="fas fa-times"></i>
+    `;
+    
+    clearButton.addEventListener('click', clearSearch);
+    clearButton.style.display = 'flex';
+}
+
+// Hide clear search button
+function hideClearSearchButton() {
+    const clearButton = document.getElementById('clear-search-button');
+    if (clearButton) {
+        clearButton.style.display = 'none';
+    }
+}
+
 // Function to force refresh cache
 function refreshProductCache() {
     productCache.clear();
